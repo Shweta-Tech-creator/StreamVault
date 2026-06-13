@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamVault - Cloud Video Streaming Hub</title>
+  <meta name="description" content="StreamVault is a premium cloud-powered video streaming portal running on AWS, connected to Amazon RDS MySQL database. Manage users, stream videos, and view statistics.">
+  
+  <!-- FontAwesome Icons & Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylingheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header>
+    <div class="logo-container">
+      <i class="fa-solid fa-cloud-bolt logo-icon"></i>
+      <a href="#" class="logo">StreamVault</a>
+    </div>
+    
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#library">Video Library</a>
+      <a href="#database">DB Records</a>
+      <a href="#contact">Contact</a>
+      <!-- Dynamically filled profile or Login button -->
+      <div id="nav-profile-area"></div>
+    </nav>
+  </header>
+
+  <!-- Hero Landing Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>StreamVault Video Streaming Cloud</h1>
+      <p>
+        An enterprise-grade cloud streaming architecture designed for managing media catalogs,
+        digital storage compliance, secure user authentication, real-time analytics, and scalable
+        infrastructure. Powered by Node.js, Express, and Amazon RDS MySQL database.
+      </p>
+      <div>
+        <a href="#library" class="btn"><i class="fa-solid fa-circle-play"></i> Browse Library</a>
+        <a href="#auth" class="btn btn-secondary"><i class="fa-solid fa-user-plus"></i> Access Platform</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Stats Section -->
+  <section id="dashboard" class="container">
+    <h2 class="dashboard-title">Cloud Infrastructure Status</h2>
+    <div class="db-status" id="db-status-badge">
+      <!-- Database status badge (Mock vs MySQL) rendered by JS -->
+    </div>
+    
+    <div class="stats">
+      <!-- 1. Total Users -->
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+        <h2 id="stat-total-users">--</h2>
+        <p>Total Registered Users</p>
+      </div>
+
+      <!-- 2. Total Videos -->
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-video"></i></div>
+        <h2 id="stat-total-videos">--</h2>
+        <p>Total Videos Managed</p>
+      </div>
+
+      <!-- 3. Active Streams -->
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+        <h2 id="stat-active-streams">--</h2>
+        <p>Active Streams</p>
+      </div>
+
+      <!-- 4. Storage Usage -->
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-hard-drive"></i></div>
+        <h2 id="stat-storage-usage">--</h2>
+        <p>Storage Used</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Cards Section -->
+  <section class="container" style="border-top: 1px solid var(--border-color); padding: 60px 0;">
+    <h2 class="section-title">Core Platform Architecture</h2>
+    <p class="section-subtitle">StreamVault implements advanced cloud patterns to deliver reliable, secure media streams.</p>
+    
+    <div class="features">
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-play"></i></div>
+        <h3>Video Streaming Management</h3>
+        <p>Centralized database catalogs streaming links, video meta-details, and active media assets.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-server"></i></div>
+        <h3>Cloud Infrastructure</h3>
+        <p>Engineered to deploy on AWS EC2 instances, utilizing AWS Security Groups, VPCs, and IAM roles.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Monitoring & Analytics</h3>
+        <p>Live read operations track connection count metrics, CPU profiles, and storage configurations.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-database"></i></div>
+        <h3>Relational Database Storage</h3>
+        <p>Amazon RDS MySQL engine delivers high availability, scaling storage, and automated schema backups.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Security & Access Control</h3>
+        <p>Uses secure bcrypt cryptographic salting for database storage of customer access profiles.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-floppy-disk"></i></div>
+        <h3>Backup & Disaster Recovery</h3>
+        <p>Integrates direct backup scripting protocols with scheduled system cron jobs to protect user logs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Library Section -->
+  <section id="library" class="video-section">
+    <div class="container">
+      <h2 class="section-title">Streaming Video Library</h2>
+      <p class="section-subtitle">Real-time media rendering sourced straight from the cloud database. Select a stream below to verify playback.</p>
+      
+      <!-- Video Grid -->
+      <div class="video-grid" id="video-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Add Video Form -->
+      <div class="upload-container">
+        <h3><i class="fa-solid fa-cloud-arrow-up"></i> Register New Video Stream</h3>
+        <form id="upload-video-form">
+          <div class="form-group">
+            <label for="upload-title">Video Title</label>
+            <input type="text" id="upload-title" placeholder="e.g., Sintel Cinematic Trailer" required>
+          </div>
+          <div class="form-group">
+            <label for="upload-category">Category / Genre</label>
+            <input type="text" id="upload-category" placeholder="e.g., Animation, Action, Drama" required>
+          </div>
+          <div class="form-group">
+            <label for="upload-url">Streaming MP4 Video URL</label>
+            <input type="url" id="upload-url" placeholder="https://domain.com/path/to/stream.mp4" required>
+          </div>
+          <div class="form-group">
+            <label for="upload-size">Estimated File Size (MB)</label>
+            <input type="number" id="upload-size" placeholder="e.g., 120" step="0.01">
+          </div>
+          <div class="form-group" style="display: none;">
+            <label for="upload-uploader">Uploader</label>
+            <input type="text" id="upload-uploader">
+          </div>
+          <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i> Add Stream to RDS Catalog</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login/Signup Section -->
+  <section id="auth" class="auth-section">
+    <div class="auth-container">
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login">Login Access</div>
+        <div class="auth-tab" id="tab-signup">Register Account</div>
+      </div>
+      
+      <div class="auth-form-container">
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" placeholder="enter email" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="enter password" required>
+          </div>
+          <button type="submit"><i class="fa-solid fa-right-to-bracket"></i> Login to StreamVault</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="auth-form">
+          <div class="form-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" placeholder="example@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Min 6 characters" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-subscription">Select Service Tier</label>
+            <select id="signup-subscription">
+              <option value="Standard">Standard Stream Tier</option>
+              <option value="Premium">Premium Ultra-HD Tier</option>
+              <option value="Enterprise">Enterprise Cloud Tier</option>
+            </select>
+          </div>
+          <button type="submit"><i class="fa-solid fa-user-plus"></i> Create Database Account</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Database Records Table Section -->
+  <section id="database" class="database">
+    <div class="container">
+      <h2 class="section-title" style="color: var(--primary);">Live RDS Database Users</h2>
+      <p class="section-subtitle">Real-time table populated by reading database user entries via REST API. Demonstrates standard SELECT operations.</p>
+      
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Account Holder</th>
+              <th>Registered Email Address</th>
+              <th>Subscription Level</th>
+              <th>Creation Date</th>
+            </tr>
+          </thead>
+          <tbody id="users-table-body">
+            <!-- Filled dynamically by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Form -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>StreamVault Support Hub</h3>
+          <p>Need support configuring your AWS security groups or managing database replication credentials? Get in touch with our operations center.</p>
+          
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="contact-text">
+              <h4>Email Operations</h4>
+              <p>support@streamvault.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="contact-text">
+              <h4>Headquarters</h4>
+              <p>Cloud Center, Seattle, WA</p>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="contact-name">Your Name</label>
+            <input type="text" id="contact-name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" placeholder="example@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Support Ticket Details</label>
+            <input type="text" id="contact-message" placeholder="What is the issue?" required>
+          </div>
+          <button type="submit"><i class="fa-solid fa-paper-plane"></i> Submit Ticket</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 StreamVault Cloud Video Portal | AWS Case Study Project</p>
+      <div class="footer-links">
+        <a href="#">Security Policy</a>
+        <a href="#">RDS Replication Map</a>
+        <a href="#">API Documentation</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Video Streaming Modal Player -->
+  <div class="modal" id="player-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Streaming Video</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="video-player-container">
+        <video id="video-player" controls preload="auto">
+          <!-- Video source loaded dynamically -->
+          Your browser does not support HTML5 video streaming.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Client-Side Logic Controller -->
+  <script src="app.js"></script>
+</body>
+</html>
